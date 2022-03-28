@@ -1,0 +1,95 @@
+﻿@model Swimming_Club_2.Models.Swimmer
+
+    <h3>Details</h3>
+
+    <br />
+    
+        <h4></h4>
+        <hr />
+        <dl class="row">
+          
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.DOB)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.DOB)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.EmailAddress)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Registration)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Registration)
+            </dd>
+
+        </dl>
+    
+    <br />
+    <br />
+    
+        <h3>Personal Records</h3>
+       
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                           Discipline
+                        </th>
+                        <th>
+                           Time
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Disciplines)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DisciplineId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Time.Minutes) :
+                                @Html.DisplayFor(modelItem => item.Time.Seconds) .
+                                @Html.DisplayFor(modelItem => item.Time.Milliseconds)
+                                @*Console.WriteLine($"{ts.Minutes}m {ts.Seconds}.{ts.Milliseconds}s");*@
+
+                            </td>
+                            <td>
+
+                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+  
+            <div>
+               
+                @Html.ActionLink("Edit", "EditForm", new { Id = Model.Id }) |
+                <a asp-action="Index">Back to List</a>
+            </div>
+<div>
+     
+</div>

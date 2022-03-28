@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Swimming_Club_2.Models.Swimmer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="CreateForm">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @* <th>
+
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Registration)
+            </th>
+            <th></th>
+        </tr>
+       
+    </thead>
+    <tbody>
+        @* //code for the cards layout.. but the table looks better
+               <div class="container d-flex flex-wrap">
+                @foreach (var person in Model)
+                {
+                    <div class="card" style="width: 18rem;">
+                      <img src="https://i.pravatar.cc/150?u=@person.Id
+                            " class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => person.Id)</h5>
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => person.FirstName)
+                            @Html.DisplayFor(modelItem => person.LastName) </h5> <br>
+                        <h5 class="card-title"> @Html.DisplayFor(modelItem => person.DOB)</h5>
+                        <h5 class="card-title"> @Html.DisplayFor(modelItem => person.EmailAddress)</h5>
+                        <h5 class="card-title">Reg.No: @Html.DisplayFor(modelItem => person.Registration)</h5>
+
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+
+                      </div>
+                    </div>
+                }
+            </div>*@
+        @foreach (var swimmer in Model)
+        {
+            <tr>
+                @*@<td>>
+                        <img src="https://i.pravatar.cc/150?u=@person.Id " class="card-img-top" alt="...">
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => swimmer.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => swimmer.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => swimmer.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => swimmer.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => swimmer.EmailAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => swimmer.Registration)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditForm", new { Id = swimmer.Id }) |
+                    @Html.ActionLink("Details", "Details", new { Id = swimmer.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { Id = swimmer.Id }) |
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+         </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>               
+                <td>
+                    @Html.DisplayFor(modelItem => person.Id)
+                </td>
+            </tr>
+        </tbody>
+    </table>*@
