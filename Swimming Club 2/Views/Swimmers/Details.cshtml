@@ -70,25 +70,20 @@
                                 @Html.DisplayFor(modelItem => item.Time.Minutes) :
                                 @Html.DisplayFor(modelItem => item.Time.Seconds) .
                                 @Html.DisplayFor(modelItem => item.Time.Milliseconds)
-                                @*Console.WriteLine($"{ts.Minutes}m {ts.Seconds}.{ts.Milliseconds}s");*@
-
                             </td>
                             <td>
-
-                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                <a asp-controller="" asp-action="" asp-route-id="">Edit</a> |
+                                <a asp-controller="" asp-action="" asp-route-id="">Delete</a>
                             </td>
                         </tr>
                     }
                 </tbody>
-            </table>
-
-  
+            </table>  
             <div>
-               
-                @Html.ActionLink("Edit", "EditForm", new { Id = Model.Id }) |
-                <a asp-action="Index">Back to List</a>
+
+                <a asp-controller="" asp-action="">New</a> |
+                <a asp-controller="swimmers" asp-action="Index">Back to List</a>
+
             </div>
 <div>
      

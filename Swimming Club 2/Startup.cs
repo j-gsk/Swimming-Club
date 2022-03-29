@@ -56,10 +56,11 @@ namespace Swimming_Club_2
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            FileServerOptions fileServerOptions = new FileServerOptions();
-            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
-            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("home.html");
-            app.UseFileServer(fileServerOptions);
+            
+            //FileServerOptions fileServerOptions = new FileServerOptions();
+            //fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
+            //fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("home.html");
+            app.UseFileServer();
 
             //app.UseDefaultFiles();
             //app.UseStaticFiles();
