@@ -10,6 +10,7 @@ namespace Swimming_Club_2.Services
     class SwimmersDAO : ISwimmerDataService
     {
         readonly string connectionString = @" Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SwimmingClub;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
         
         public IEnumerable<Swimmer> GetAll()
         {

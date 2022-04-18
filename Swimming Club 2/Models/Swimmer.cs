@@ -28,6 +28,6 @@ namespace Swimming_Club_2.Models
         public string Registration { get; set; } = string.Empty;
 
         public string EmailAddress { get; set; } = string.Empty;
-        public List<Discipline> Disciplines { get; set; }
+        public List<Discipline> Disciplines { get; set; } = new List<Discipline>();
     }
 }

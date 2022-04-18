@@ -1,0 +1,1 @@
+﻿alter table dbo.Swimmers drop column DisciplineId, DisciplineTime

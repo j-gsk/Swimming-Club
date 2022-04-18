@@ -22,17 +22,14 @@ namespace Swimming_Club_2.Services
             }
             return toDelete;
         }
-
         public Swimmer GetOne(int id)
         {            
             return _context.Swimmers.Find(id);
         }
-
         public IEnumerable<Swimmer> GetAll()
         {
             return _context.Swimmers;
-        }
-        
+        }        
 
         public Swimmer Insert(Swimmer swimmer)
         {

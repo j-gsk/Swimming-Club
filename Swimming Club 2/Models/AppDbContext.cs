@@ -9,9 +9,7 @@ namespace Swimming_Club_2.Models
             : base(options)
         {
 
-        }
-      
-        public DbSet<User> Users { get; set; }
+        }      
         public DbSet<Swimmer> Swimmers { get; set; }
         public DbSet <Discipline> Disciplines { get; set; } 
 

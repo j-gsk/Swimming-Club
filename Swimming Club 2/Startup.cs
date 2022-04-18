@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Swimming_Club_2.Data;
 using Swimming_Club_2.Models;
 using Swimming_Club_2.Services;
 using System;
@@ -30,15 +29,13 @@ namespace Swimming_Club_2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddDatabaseDeveloperPageExceptionFilter();
-
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<AppDbContext>();
             services.AddControllersWithViews();
-            services.AddSingleton<ISwimmerDataService, SwimmersDAO>();
+            services.AddScoped<ISwimmerDataService, SwimmersDAO>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,7 +61,7 @@ namespace Swimming_Club_2
 
             //app.UseDefaultFiles();
             //app.UseStaticFiles();
-
+            
             app.UseRouting();
 
             app.UseAuthentication();
