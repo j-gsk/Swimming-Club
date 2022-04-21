@@ -14,7 +14,7 @@ namespace Swimming_Club_2.Services
         
         public IEnumerable<Swimmer> GetAll()
         {
-            List<Swimmer> swimmersFound = new List<Swimmer>();
+            List<Swimmer> allSwimmers = new List<Swimmer>();
 
             string statement = "SELECT Id, FirstName, LastName, DOB, Registration, EmailAddress FROM dbo.Swimmers";
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -26,7 +26,7 @@ namespace Swimming_Club_2.Services
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        swimmersFound.Add(new Swimmer
+                        allSwimmers.Add(new Swimmer
                         {
                             Id = (int)reader[0],
                             FirstName = (string)reader[1],
@@ -42,7 +42,7 @@ namespace Swimming_Club_2.Services
                     Console.WriteLine(e.Message);
                 }
             }
-            return swimmersFound;
+            return allSwimmers;
         }
 
         public Swimmer Delete(int id)

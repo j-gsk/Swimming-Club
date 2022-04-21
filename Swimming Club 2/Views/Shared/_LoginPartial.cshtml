@@ -2,7 +2,33 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<ul class="navbar-nav">
+    <ul class="navbar-nav ml-auto">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="nav-item">
+                <form method="post" asp-controller="Account" asp-action="Logout">
+                    <button type="submit" class="nav-link btn btn-link py-0" style="width:auto">
+                        Logout @User.Identity.Name
+                    </button>
+                </form>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a asp-controller="Account" asp-action="Register" class="nav-link">
+                    Register
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Account" asp-action="Login" class="nav-link">
+                    Login
+                </a>
+            </li>
+        }                    
+    </ul>
+
+@*<ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
@@ -23,4 +49,4 @@ else
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
 }
-</ul>
+</ul>*@

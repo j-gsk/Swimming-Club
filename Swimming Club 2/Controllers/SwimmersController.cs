@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Swimming_Club_2.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class SwimmersController : Controller
     {
         private readonly ISwimmerDataService _dataService;
@@ -17,14 +17,13 @@ namespace Swimming_Club_2.Controllers
         {
             _dataService = swimmersDAO;
         }       
-
+        
         public IActionResult Index()
         {
             List<Swimmer> swimmers = new List<Swimmer>();
             swimmers.AddRange(_dataService.GetAll());
             return View("Index", swimmers);
         }
-
         public IActionResult SearchByName()
         {
             return View("SearchForm");
@@ -41,24 +40,21 @@ namespace Swimming_Club_2.Controllers
            var result = _dataService.GetOne(id);
             return View(result);
         }
-
         public IActionResult ProcessEdit(Swimmer swimmer)
         {
             var updatedSwimmer = _dataService.Update(swimmer);
             List<Discipline> disciplines = _dataService.GetPRsBySwimmerId(updatedSwimmer.Id);
             updatedSwimmer.Disciplines = disciplines;
 
-
             return View("Details", updatedSwimmer);
         }
 
+        [Authorize]
         public IActionResult Delete(int id)
-        {
-            var dao = new SwimmersDAO();
-            var x = dao.Delete(id);
-            return View("Index", dao.GetAll());
+        {            
+            var x = _dataService.Delete(id);
+            return View("Index", _dataService.GetAll());
         }
-
         public IActionResult Details(int id)
         {            
             var swimmer = _dataService.GetOne(id);
@@ -77,9 +73,8 @@ namespace Swimming_Club_2.Controllers
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public IActionResult Create(Swimmer swimmer)
-        {
-            var dao = new SwimmersDAO();
-            var result = dao.Insert(swimmer);
+        {           
+            var result = _dataService.Insert(swimmer);
             return View("Details", swimmer);
         }
         [HttpGet]
