@@ -1,12 +1,10 @@
-﻿@using Microsoft.AspNetCore.Identity
-@model IEnumerable<IdentityRole>
+﻿@model IEnumerable<IdentityRole>
 
 @{
     ViewBag.title = "All Roles";
 }
 
 <h1>All Roles</h1>
-
 
 
 @if (Model != null)
@@ -29,7 +27,7 @@
             </div>
             <div class="card-footer">
                 <a class="btn btn-primary" asp-controller="administration" asp-action="EditRole" asp-route-id="@role.Id">Edit</a>
-                <a class="btn btn-danger" asp-controller="administration" asp-action="DeleteRole" asp-route-id="@role.Id">Delete</a>
+                <a class="btn btn-danger" asp-controller="administration" asp-action="DeleteRole" asp-route-roleId="@role.Id">Delete</a>
             </div>
         </div>
     }

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+
+@{
+    ViewBag.Title = "All Users";
+}
+
+<h1>All Users</h1>
+
+<a asp-controller="account" asp-action="AddUser"  method="get" class="btn btn-primary m-3" style="width:auto">Add User</a>
+@foreach(var user in Model)
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            User Id: @user.Id;
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                User Name: @user.UserName;
+            </h5>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-primary" asp-controller="admin" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+            <a class="btn btn-danger" asp-controller="admin" asp-action="Delete" asp-route-id="@user.Id">Delete</a>
+        </div>
+    </div>
+}

@@ -3,6 +3,10 @@
     {
         Layout = "_AdminLayout";
     }
+    else if (User.IsInRole("Coach"))
+    {
+        Layout = "_CoachLayout";
+    }
     else
     {
         Layout = "_Layout";

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Swimming_Club_2.Viewmodels;
@@ -8,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace Swimming_Club_2.Controllers
 {
-    public class AdministrationController : Controller
+    [Authorize(Roles="Admin")]
+    public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<IdentityUser> userManager;
 
-        public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
@@ -40,7 +42,7 @@ namespace Swimming_Club_2.Controllers
                 IdentityResult result = await roleManager.CreateAsync(role);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("AllRoles", "Administration");
                 }
                 else
                 {
@@ -53,13 +55,13 @@ namespace Swimming_Club_2.Controllers
             return View(model);
         }
         
-        [HttpPost]
-        //public async Task<IActionResult> DeleteRole(string roleId)
-        //{
-        //    IdentityRole role = await roleManager.FindByIdAsync(roleId);
-        //    var result = await roleManager.DeleteAsync(role);
-        //    return View("index");
-        //}
+        //[HttpPost]
+        public async Task<IActionResult> DeleteRole(string roleId)
+        {
+            IdentityRole role = await roleManager.FindByIdAsync(roleId);
+            var result = await roleManager.DeleteAsync(role);
+            return RedirectToAction("AllRoles");
+        }
         [HttpGet]
         public async Task<IActionResult> EditRole(string id)
         {
@@ -139,14 +141,15 @@ namespace Swimming_Club_2.Controllers
                     var result = await userManager.RemoveFromRoleAsync(identityUser, role.Name);
                 }
             }
-
-            EditRoleViewModel editModel = new EditRoleViewModel()
-            {
-                RoleId = roleId,
-                RoleName = role.Name
-            };
+            
 
             return RedirectToAction("EditRole", new { Id = roleId });
+        }
+        
+        public IActionResult AllUsers()
+        {
+            var usrs = userManager.Users;
+            return View(usrs);
         }
     }
 }

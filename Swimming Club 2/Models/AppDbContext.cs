@@ -11,7 +11,7 @@ namespace Swimming_Club_2.Models
 
         }      
         public DbSet<Swimmer> Swimmers { get; set; }
-        public DbSet <Discipline> Disciplines { get; set; } 
+        public DbSet<Discipline> Disciplines { get; set; }
 
 
     }

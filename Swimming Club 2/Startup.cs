@@ -32,10 +32,10 @@ namespace Swimming_Club_2
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<AppDbContext>();
             services.AddControllersWithViews();
-            services.AddScoped<ISwimmerDataService, SwimmersDAO>();
+            services.AddScoped<ISwimmerDataService, SwimmersDAO_EF>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

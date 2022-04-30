@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Swimming_Club_2.Models
 {
-    public class Referee : IReferee
+    public class Referee
     {
         [Key]
         public int Id { get; set; }

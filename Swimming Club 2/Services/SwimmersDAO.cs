@@ -26,6 +26,10 @@ namespace Swimming_Club_2.Services
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
+                        //allSwimmers.Add(new Swimmer(
+                        //    (int)reader[0], (string)reader[1], (string)reader[2], (DateTime)reader[3], (string)reader[4], (string)reader[5]
+                        //    ));
+
                         allSwimmers.Add(new Swimmer
                         {
                             Id = (int)reader[0],
@@ -69,7 +73,7 @@ namespace Swimming_Club_2.Services
 
         public Swimmer GetOne(int Id)
         {
-            Swimmer swimmer = null;
+            Swimmer swimmer = new Swimmer();
             string sqlCommnadText = "SELECT * FROM dbo.Swimmers WHERE Id = @Id";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -82,16 +86,16 @@ namespace Swimming_Club_2.Services
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        swimmer = new Swimmer
-                        {
-                            Id = (int)reader[0],
-                            FirstName = Convert.ToString(reader[1]),
-                            LastName = Convert.ToString(reader[2]),
-                            DOB = Convert.ToDateTime(reader[3]),
-                            Registration = Convert.ToString(reader[4]),
-                            EmailAddress = Convert.ToString(reader[5]),
-                            
-                        };
+                        //swimmer = new Swimmer(
+                        //    (int)reader[0], (string)reader[1], (string)reader[2], (DateTime)reader[3], (string)reader[4], (string)reader[5]
+                        //    );
+
+                        swimmer.Id = (int)reader[0];
+                        swimmer.FirstName = Convert.ToString(reader[1]);
+                        swimmer.LastName = Convert.ToString(reader[2]);
+                        swimmer.DOB = Convert.ToDateTime(reader[3]);
+                        swimmer.Registration = Convert.ToString(reader[4]);
+                        swimmer.EmailAddress = Convert.ToString(reader[5]);
                     }
                 }
                 catch (Exception e)
@@ -100,7 +104,7 @@ namespace Swimming_Club_2.Services
                 }
             }
             return swimmer;
-        }
+        }       
 
         public Swimmer Insert(Swimmer swimmer)
         {
@@ -179,8 +183,12 @@ namespace Swimming_Club_2.Services
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
-                    {
-                        swimmersFound.Add(new Swimmer
+                    {                       
+                        //swimmersFound.Add(new Swimmer(
+                        //(int)reader[0], (string)reader[1], (string)reader[2],           (DateTime)reader[3], (string)reader[4], (string)reader[5]
+                            //));
+
+                        swimmersFound.Add(new Swimmer 
                         {
                             Id = (int)reader[0],
                             FirstName = (string)reader[1],
@@ -188,7 +196,6 @@ namespace Swimming_Club_2.Services
                             DOB = (DateTime)reader[3],
                             Registration = (string)reader[4],
                             EmailAddress = (string)reader[5]
-
                         });
                     }
                 }

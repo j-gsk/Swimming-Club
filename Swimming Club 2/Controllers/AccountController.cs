@@ -69,7 +69,7 @@ namespace Swimming_Club_2.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,6 @@ namespace Swimming_Club_2.Controllers
                         return Redirect(returnUrl);
                     }
                 }
-
                 ModelState.AddModelError(string.Empty, "Invalid login attempt");
 
             }
@@ -99,6 +98,11 @@ namespace Swimming_Club_2.Controllers
             return RedirectToAction("index", "home");
         }
 
-        
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

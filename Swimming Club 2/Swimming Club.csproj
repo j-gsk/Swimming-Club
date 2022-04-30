@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-Swimming_Club_2-21CC815F-26D0-4325-81B2-6D308BEAB18F</UserSecretsId>
+	  <Nullable>enable</Nullable>
     <RootNamespace>Swimming_Club_2</RootNamespace>
   </PropertyGroup>
 
@@ -21,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Models\Contracts\" />
   </ItemGroup>
 
 </Project>

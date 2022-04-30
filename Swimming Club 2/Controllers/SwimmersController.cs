@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Swimming_Club_2.Controllers
 {
-    //[Authorize]
+    [Authorize(Roles ="Admin, Coach")]
     public class SwimmersController : Controller
     {
         private readonly ISwimmerDataService _dataService;
