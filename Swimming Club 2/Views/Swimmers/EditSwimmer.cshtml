@@ -1,7 +1,7 @@
 ﻿@model Swimming_Club_2.Models.Swimmer
 
 @{
-    ViewData["Title"] = "EditForm";
+    ViewData["Title"] = "Edit Swimmer";
 }
 
 <h1>Edit Swimmer Information</h1>
@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="ProcessEdit">
+        <form asp-action="EditSwimmer" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>     
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>

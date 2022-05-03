@@ -35,7 +35,7 @@ namespace Swimming_Club_2
             services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<AppDbContext>();
             services.AddControllersWithViews();
-            services.AddScoped<ISwimmerDataService, SwimmersDAO_EF>();
+            services.AddScoped<ISwimmerDataService, SwimmersDAO>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

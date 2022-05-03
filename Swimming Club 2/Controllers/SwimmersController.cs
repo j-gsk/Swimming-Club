@@ -24,52 +24,60 @@ namespace Swimming_Club_2.Controllers
             swimmers.AddRange(_dataService.GetAll());
             return View("Index", swimmers);
         }
+
+        [HttpGet]
         public IActionResult SearchByName()
         {
-            return View("SearchForm");
+            return View();
         }
-        public IActionResult ProcessSearch(string LastName)
+
+        [HttpPost]
+        public IActionResult SearchByName(string LastName)
         {
             var result = _dataService.SearchByLastName(LastName);
             return View("Index", result);
         }
 
+        [HttpGet]
+
         // GET: SwimmersController/Edit/5
-        public IActionResult EditForm(int id)
+        public IActionResult EditSwimmer(int id)
         {
            var result = _dataService.GetOne(id);
             return View(result);
         }
-        public IActionResult ProcessEdit(Swimmer swimmer)
+
+        [HttpPost]
+        public IActionResult EditSwimmer(Swimmer swimmer)
         {
             var updatedSwimmer = _dataService.Update(swimmer);
-            List<Discipline> disciplines = _dataService.GetPRsBySwimmerId(updatedSwimmer.Id);
+            List<Discipline> disciplines = _dataService.GetDisciplinesById(updatedSwimmer.Id);
             updatedSwimmer.Disciplines = disciplines;
 
             return View("Details", updatedSwimmer);
         }
-
-        [Authorize]
+       
         public IActionResult Delete(int id)
         {            
             var x = _dataService.Delete(id);
             return View("Index", _dataService.GetAll());
         }
+
         public IActionResult Details(int id)
         {            
             var swimmer = _dataService.GetOne(id);
-            List<Discipline> disciplines = _dataService.GetPRsBySwimmerId(id);
+            List<Discipline> disciplines = _dataService.GetDisciplinesById(id);
             swimmer.Disciplines = disciplines;
-            ViewBag.SwimmerId = swimmer.Id;
             return View(swimmer);
         }
-        
-        public IActionResult CreateForm()
+        [HttpGet]
+        public IActionResult Create()
         {
             return View();
         }
 
         // POST: SwimmersController/Create
+
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public IActionResult Create(Swimmer swimmer)
@@ -82,6 +90,7 @@ namespace Swimming_Club_2.Controllers
         {            
             return View();
         }
+
         [HttpPost]
         public IActionResult CreateDiscipline(Discipline discipline)
         {

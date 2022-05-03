@@ -54,7 +54,7 @@ namespace Swimming_Club_2.Services
             return swimmer;
         }
 
-        public List<Discipline> GetPRsBySwimmerId(int swimmerId)
+        public List<Discipline> GetDisciplinesById(int swimmerId)
         {
             var prs = _context.Disciplines.ToList();
             return prs;

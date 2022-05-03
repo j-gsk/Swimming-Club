@@ -25,9 +25,7 @@ namespace Swimming_Club_2.Models
         public List<Swimmer> Swimmers { get; set; } = new List<Swimmer>();
 
         [DisplayName("Referees")]
-        public List<Referee> Referee { get; set; } = new List<Referee>();
-
-        //disciplines that are part of swimmer class are different to disciplines that are part of competition class. reason is swimmer's disciplines contain his personal records. Competition's disciplines have world, season, and event records.
+        public List<Referee> Referee { get; set; } = new List<Referee>();       
                         
     }
 }

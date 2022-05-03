@@ -9,9 +9,10 @@ namespace Swimming_Club_2.Services
 {
     class SwimmersDAO : ISwimmerDataService
     {
-        readonly string connectionString = @" Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SwimmingClub;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        readonly string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=aspnet-Swimming_Club_2-21CC815F-26D0-4325-81B2-6D308BEAB18F;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        //@" Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SwimmingClub;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-        
+
         public IEnumerable<Swimmer> GetAll()
         {
             List<Swimmer> allSwimmers = new List<Swimmer>();
@@ -207,7 +208,7 @@ namespace Swimming_Club_2.Services
             return swimmersFound;
         }       
 
-        public List<Discipline> GetPRsBySwimmerId(int swimmerId)
+        public List<Discipline> GetDisciplinesById(int swimmerId)
         {
             List<Discipline> output = new List<Discipline>();
             
@@ -224,8 +225,8 @@ namespace Swimming_Club_2.Services
                     while (reader.Read())
                     {
                         Discipline discipline = new Discipline();
-                        
-                        discipline.DisciplineId = (string)reader[0];
+
+                        discipline.DisciplineId = (DisciplineId)int.Parse((string)reader[0]); 
                         discipline.Time = TimeSpan.FromMilliseconds((int)reader[1]);
 
                         output.Add(discipline);

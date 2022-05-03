@@ -13,7 +13,7 @@ namespace Swimming_Club_2.Services
         Swimmer GetOne(int Id);
         Swimmer Insert(Swimmer swimmer);
         Swimmer Delete(int Id);
-        List<Discipline> GetPRsBySwimmerId(int swimmerId);
+        List<Discipline> GetDisciplinesById(int swimmerId);
         Swimmer Update(Swimmer swimmer);
 
 

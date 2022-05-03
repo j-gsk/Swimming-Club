@@ -10,15 +10,7 @@ namespace Swimming_Club_2.Models
 {
     public class Swimmer
     {
-        //public Swimmer(int id, string firstName, string lastName, DateTime dob, string? registration, string emailAddress)
-        //{
-        //    Id = id;
-        //    FirstName = firstName;
-        //    LastName = lastName;
-        //    DOB = dob;
-        //    Registration = registration;
-        //    EmailAddress = emailAddress;
-        //}
+        
         public int Id { get; set; }
 
         [Required]
@@ -37,6 +29,6 @@ namespace Swimming_Club_2.Models
         public string? Registration { get; set; }
 
         public string EmailAddress { get; set; } = string.Empty;
-        public List<Discipline>? Disciplines { get; set; } = new List<Discipline>();
+        public List<Discipline> Disciplines { get; set; } = new List<Discipline>();
     }
 }
